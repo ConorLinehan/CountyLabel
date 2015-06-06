@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="CountyLabelTestProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yi6-It-vaF" customClass="CountyLabel" customModule="CountyLabelTestProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Urw-4I-SrC"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="95" id="uQH-34-EFa">
+                                        <variation key="widthClass=compact" constant="200"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="100" id="yM4-FR-R8W"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica-LightOblique" family="Helvetica" pointSize="70"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Urw-4I-SrC"/>
+                                        <exclude reference="uQH-34-EFa"/>
+                                        <exclude reference="yM4-FR-R8W"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="Urw-4I-SrC"/>
+                                        <include reference="uQH-34-EFa"/>
+                                        <exclude reference="yM4-FR-R8W"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Yi6-It-vaF" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="249" id="FoA-gT-6Gu"/>
+                            <constraint firstAttribute="centerY" secondItem="Yi6-It-vaF" secondAttribute="centerY" id="H9C-L6-mM2"/>
+                            <constraint firstAttribute="centerX" secondItem="Yi6-It-vaF" secondAttribute="centerX" id="HSo-XQ-bdo">
+                                <variation key="widthClass=compact" constant="-17"/>
+                            </constraint>
+                            <constraint firstItem="Yi6-It-vaF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="161" id="yjq-Sy-pVb"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Yi6-It-vaF"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="FoA-gT-6Gu"/>
+                                <exclude reference="H9C-L6-mM2"/>
+                                <exclude reference="HSo-XQ-bdo"/>
+                                <exclude reference="yjq-Sy-pVb"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="Yi6-It-vaF"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="FoA-gT-6Gu"/>
+                                <exclude reference="H9C-L6-mM2"/>
+                                <exclude reference="HSo-XQ-bdo"/>
+                                <include reference="yjq-Sy-pVb"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="countyLabel" destination="Yi6-It-vaF" id="T7v-mZ-HB3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="244.5" y="312"/>
+        </scene>
+    </scenes>
+</document>
