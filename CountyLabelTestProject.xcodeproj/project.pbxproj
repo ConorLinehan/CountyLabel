@@ -14,6 +14,7 @@
 		FF5EBDA71B220BF3007E5B33 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5EBDA51B220BF3007E5B33 /* LaunchScreen.xib */; };
 		FF5EBDB31B220BF3007E5B33 /* CountyLabelTestProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5EBDB21B220BF3007E5B33 /* CountyLabelTestProjectTests.swift */; };
 		FF5EBDBE1B220CF5007E5B33 /* CountyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5EBDBD1B220CF5007E5B33 /* CountyLabel.swift */; };
+		FF5EBDC51B263075007E5B33 /* ColorHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5EBDC41B263075007E5B33 /* ColorHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,8 +28,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		009001B57D45568FF8CB9789 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		6ED2203A4072E12C72A6769D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CCAF609C898289280F48DBCD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF5EBD971B220BF3007E5B33 /* CountyLabelTestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountyLabelTestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF5EBD9B1B220BF3007E5B33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,6 +40,7 @@
 		FF5EBDB11B220BF3007E5B33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF5EBDB21B220BF3007E5B33 /* CountyLabelTestProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountyLabelTestProjectTests.swift; sourceTree = "<group>"; };
 		FF5EBDBD1B220CF5007E5B33 /* CountyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountyLabel.swift; sourceTree = "<group>"; };
+		FF5EBDC41B263075007E5B33 /* ColorHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,22 +69,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E36F6DB3FBE0D8B35F8E4459 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				009001B57D45568FF8CB9789 /* Pods.debug.xcconfig */,
-				6ED2203A4072E12C72A6769D /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		FF5EBD8E1B220BF3007E5B33 = {
 			isa = PBXGroup;
 			children = (
 				FF5EBD991B220BF3007E5B33 /* CountyLabelTestProject */,
 				FF5EBDAF1B220BF3007E5B33 /* CountyLabelTestProjectTests */,
 				FF5EBD981B220BF3007E5B33 /* Products */,
-				E36F6DB3FBE0D8B35F8E4459 /* Pods */,
 				6CAB508AFC50CF4444BD06C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -140,17 +130,10 @@
 		FF5EBDBC1B220CC2007E5B33 /* CountyLabel */ = {
 			isa = PBXGroup;
 			children = (
-				FF5EBDBF1B222228007E5B33 /* 3rdParty */,
 				FF5EBDBD1B220CF5007E5B33 /* CountyLabel.swift */,
+				FF5EBDC41B263075007E5B33 /* ColorHelpers.swift */,
 			);
 			path = CountyLabel;
-			sourceTree = "<group>";
-		};
-		FF5EBDBF1B222228007E5B33 /* 3rdParty */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = 3rdParty;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +239,7 @@
 				FF5EBD9F1B220BF3007E5B33 /* ViewController.swift in Sources */,
 				FF5EBDBE1B220CF5007E5B33 /* CountyLabel.swift in Sources */,
 				FF5EBD9D1B220BF3007E5B33 /* AppDelegate.swift in Sources */,
+				FF5EBDC51B263075007E5B33 /* ColorHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

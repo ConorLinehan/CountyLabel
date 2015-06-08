@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var countyLabel: CountyLabel!
+    @IBOutlet var standardLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,10 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         
         countyLabel.CL_animateWithDuration(2, from: 0, to: 100, completion: nil)
+        
+        [UIView .animateWithDuration(2, animations: {
+            self.standardLabel.textColor = UIColor.redColor()
+        })]
         
     }
 

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 // A delay function
 // From raywenderlich
 func delay(#seconds: Double, completion:()->()) {
@@ -19,16 +20,7 @@ func delay(#seconds: Double, completion:()->()) {
 }
 
 func update(t:Double) -> Double{
-    return pow(t, 3.0)
-}
-
-func randomColor() -> UIColor{
-    
-    var randomRed:CGFloat = CGFloat(drand48())
-    var randomGreen:CGFloat = CGFloat(drand48())
-    var randomBlue:CGFloat = CGFloat(drand48())
-    return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
-    
+    return t
 }
 
 func retriveRGBFromColor(color:UIColor) -> (CGFloat,CGFloat,CGFloat) {
@@ -43,10 +35,15 @@ func retriveRGBFromColor(color:UIColor) -> (CGFloat,CGFloat,CGFloat) {
     
 }
 
+func interpolate(#start:Double, end:Double, stepNumber:Int, lastStepNumber:Int) -> Double{
+    return 2.0
+}
+
 class CountyLabel: UILabel {
     
     
-
+    var colorGradients = [UIColor.whiteColor(),UIColor.blueColor(),UIColor.redColor()]
+    
     
     func CL_animateWithDuration(duration: NSTimeInterval, from: Int, to:Int, completion: ((Bool) ->Void)?) {
         
@@ -54,6 +51,11 @@ class CountyLabel: UILabel {
         self.endValue = to
         
         self.lastUpdateColor = self.textColor
+        
+        // add text color to start
+        colorGradients.insert(self.textColor, atIndex: 0)
+        
+        self.fractionUpdate = 1.0 / Double(colorGradients.count)
 
         
         if(duration == 0){
@@ -69,6 +71,7 @@ class CountyLabel: UILabel {
         
         self.totalTime = duration
         self.progress = 0
+        self.percent = 0
         self.lastUpdateTime = NSDate.timeIntervalSinceReferenceDate()
         
         self.timer = NSTimer(timeInterval: (1/30.0), target: self, selector: Selector("tick:"), userInfo: nil, repeats: true)
@@ -87,6 +90,8 @@ class CountyLabel: UILabel {
     var totalTime:NSTimeInterval!
     var lastUpdateColor:UIColor!
     var endColor = UIColor.redColor()
+    var percent:Double!
+    var fractionUpdate:Double!
     
     var endTimeStamp:NSTimeInterval!
     
@@ -98,7 +103,11 @@ class CountyLabel: UILabel {
         // Grab now
         var now = NSDate.timeIntervalSinceReferenceDate()
         self.progress += (now - self.lastUpdateTime)
+        
+        self.percent = (self.progress / self.totalTime)
+        
         self.lastUpdateTime = now
+        
         
         if(self.progress >= self.totalTime){
             self.timer.invalidate()
@@ -106,14 +115,13 @@ class CountyLabel: UILabel {
             self.progress = self.totalTime
         }
         
-        println("progress: \(self.progress)")
         
-        self.setTextValue(self.currentValue)
+        self.updateValues()
         
     }
     
-    func setTextValue(value:Double) {
-        var formattedValue = Int(floor(value))
+    func updateValues() {
+        var formattedValue = Int(floor(self.currentValue))
         
         // run on main thread
         dispatch_async(dispatch_get_main_queue(), {
@@ -125,29 +133,24 @@ class CountyLabel: UILabel {
     
     var currentValue:Double {
         
-        if(self.progress >= self.totalTime){
+        // For some fuzziness maybe??
+        if(self.percent >= 1.1){
             return Double(self.endValue)
         }
         
-        var percent = self.progress / self.totalTime
-        var updateVal = update(percent)
+        var updateVal = update(self.percent)
         
         return Double(self.startValue) + (updateVal * Double(self.endValue - self.startValue))
         
     }
     
+    
+    // Fixed error update from fixed values
     var currentColor:UIColor {
         
-        var (r,g,b) = retriveRGBFromColor(lastUpdateColor)
+        println("fraction: \(self.percent)")
         
-        var newRed = (1.0 - CGFloat(self.progress)) * r + CGFloat(self.progress) * CGFloat(255.00 / 255.00)
-        var newGreen = (1.0 - CGFloat(self.progress)) * g + CGFloat(self.progress) * CGFloat(100.00 / 255.00)
-        var newBlue = (1.0 - CGFloat(self.progress)) * b + CGFloat(self.progress) * CGFloat(111.00 / 255.00)
-        
-        
-        println("new Red:\(newRed) Green: \(newGreen) Blue: \(newBlue)")
-        
-        lastUpdateColor = UIColor(red: newRed, green: newGreen, blue: newBlue, alpha: 1.0)
+        lastUpdateColor = ColorInterpolate.interpolate(from:UIColor.blackColor(), to:UIColor.redColor(),fraction:CGFloat(self.percent))
         
         return lastUpdateColor
     }
