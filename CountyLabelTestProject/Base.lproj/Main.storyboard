@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -44,22 +43,33 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emR-tD-6g4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYp-VV-WmI" customClass="CountyLabel" customModule="CountyLabelTestProject" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="81" id="SJC-49-3xr"/>
+                                    <constraint firstAttribute="height" constant="81" id="NoJ-HX-IC0"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="95" id="RIG-9L-yzh">
+                                        <variation key="widthClass=compact" constant="200"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="100" id="gAq-2S-eBS"/>
+                                    <constraint firstAttribute="width" constant="100" id="hye-Yd-onl"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="Helvetica-LightOblique" family="Helvetica" pointSize="70"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="SJC-49-3xr"/>
+                                        <exclude reference="NoJ-HX-IC0"/>
+                                        <exclude reference="RIG-9L-yzh"/>
+                                        <exclude reference="gAq-2S-eBS"/>
+                                        <exclude reference="hye-Yd-onl"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="SJC-49-3xr"/>
+                                        <include reference="NoJ-HX-IC0"/>
+                                        <include reference="RIG-9L-yzh"/>
+                                        <exclude reference="gAq-2S-eBS"/>
+                                        <exclude reference="hye-Yd-onl"/>
                                     </mask>
                                 </variation>
                             </label>
@@ -67,49 +77,46 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Yi6-It-vaF" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="249" id="FoA-gT-6Gu"/>
+                            <constraint firstItem="fYp-VV-WmI" firstAttribute="top" secondItem="Yi6-It-vaF" secondAttribute="bottom" constant="52" id="GHy-NN-ba7"/>
                             <constraint firstAttribute="centerY" secondItem="Yi6-It-vaF" secondAttribute="centerY" id="H9C-L6-mM2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="emR-tD-6g4" secondAttribute="trailing" constant="65" id="HDs-ef-1IC"/>
                             <constraint firstAttribute="centerX" secondItem="Yi6-It-vaF" secondAttribute="centerX" id="HSo-XQ-bdo">
                                 <variation key="widthClass=compact" constant="-17"/>
                             </constraint>
-                            <constraint firstItem="emR-tD-6g4" firstAttribute="leading" secondItem="Yi6-It-vaF" secondAttribute="leading" id="aG9-qq-qpn"/>
-                            <constraint firstItem="emR-tD-6g4" firstAttribute="top" secondItem="Yi6-It-vaF" secondAttribute="bottom" constant="40" id="kKd-Ka-yDU"/>
+                            <constraint firstItem="fYp-VV-WmI" firstAttribute="leading" secondItem="Yi6-It-vaF" secondAttribute="leading" id="cg8-Pm-5MR"/>
                             <constraint firstItem="Yi6-It-vaF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="161" id="yjq-Sy-pVb"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="Yi6-It-vaF"/>
-                                <exclude reference="emR-tD-6g4"/>
+                                <exclude reference="fYp-VV-WmI"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="FoA-gT-6Gu"/>
                                 <exclude reference="H9C-L6-mM2"/>
                                 <exclude reference="HSo-XQ-bdo"/>
                                 <exclude reference="yjq-Sy-pVb"/>
-                                <exclude reference="HDs-ef-1IC"/>
-                                <exclude reference="aG9-qq-qpn"/>
-                                <exclude reference="kKd-Ka-yDU"/>
+                                <exclude reference="GHy-NN-ba7"/>
+                                <exclude reference="cg8-Pm-5MR"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="Yi6-It-vaF"/>
-                                <include reference="emR-tD-6g4"/>
+                                <include reference="fYp-VV-WmI"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="FoA-gT-6Gu"/>
                                 <exclude reference="H9C-L6-mM2"/>
                                 <exclude reference="HSo-XQ-bdo"/>
                                 <include reference="yjq-Sy-pVb"/>
-                                <include reference="HDs-ef-1IC"/>
-                                <include reference="aG9-qq-qpn"/>
-                                <include reference="kKd-Ka-yDU"/>
+                                <include reference="GHy-NN-ba7"/>
+                                <include reference="cg8-Pm-5MR"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="countyLabel" destination="Yi6-It-vaF" id="T7v-mZ-HB3"/>
-                        <outlet property="standardLabel" destination="emR-tD-6g4" id="wDW-TB-8aT"/>
+                        <outlet property="secondLabel" destination="fYp-VV-WmI" id="UHN-wX-cwP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

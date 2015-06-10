@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var countyLabel: CountyLabel!
-    @IBOutlet var standardLabel: UILabel!
+    @IBOutlet var secondLabel: CountyLabel!
     
     
     override func viewDidLoad() {
@@ -22,12 +22,21 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        countyLabel.CL_animateWithDuration(2, from: 0, to: 100, completion: nil)
         
-        [UIView .animateWithDuration(2, animations: {
-            self.standardLabel.textColor = UIColor.redColor()
-        })]
+        var recognizer = UITapGestureRecognizer(target: self, action: Selector("animate"))
         
+        self.view.addGestureRecognizer(recognizer)
+        
+        
+        
+    }
+    
+    func animate(){
+        countyLabel.CL_animateWithDuration(0.5, from: 0, to: 10, completion: { _ in
+            
+            self.secondLabel.CL_animateWithDuration(1, from: 0, to: 1000, completion: nil)
+            
+        })
     }
 
     override func didReceiveMemoryWarning() {

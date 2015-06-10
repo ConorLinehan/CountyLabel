@@ -56,7 +56,8 @@ class CountyLabel: UILabel {
         colorGradients.insert(self.textColor, atIndex: 0)
         
         self.fractionUpdate = 1.0 / Double(colorGradients.count)
-
+        
+        self.compleltionFunc = completion
         
         if(duration == 0){
             // No animation
@@ -97,6 +98,8 @@ class CountyLabel: UILabel {
     
     var timer:NSTimer!
     
+    var compleltionFunc: ((Bool) -> Void)?
+    
     func tick(timer:NSTimer) ->Void{
         print("Entered \n")
         
@@ -113,6 +116,10 @@ class CountyLabel: UILabel {
             self.timer.invalidate()
             self.timer = nil
             self.progress = self.totalTime
+            
+            // call completion
+            self.compleltionFunc?(true)
+            
         }
         
         
