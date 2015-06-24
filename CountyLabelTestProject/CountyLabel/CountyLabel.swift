@@ -19,33 +19,15 @@ func delay(#seconds: Double, completion:()->()) {
     }
 }
 
-func update(t:Double) -> Double{
-    return t
-}
-
-func retriveRGBFromColor(color:UIColor) -> (CGFloat,CGFloat,CGFloat) {
-    
-    var fRed : CGFloat = 0
-    var fGreen : CGFloat = 0
-    var fBlue : CGFloat = 0
-    
-    color.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: nil)
-    
-    return (fRed,fGreen,fBlue)
-    
-}
-
-func interpolate(#start:Double, end:Double, stepNumber:Int, lastStepNumber:Int) -> Double{
-    return 2.0
-}
 
 class CountyLabel: UILabel {
     
+    // Default duration of one second
+    private var duration:NSTimeInterval = 1.0
     
-    var colorGradients = [UIColor.whiteColor(),UIColor.blueColor(),UIColor.redColor()]
-    
-    
-    func CL_animateWithDuration(duration: NSTimeInterval, from: Int, to:Int, completion: ((Bool) ->Void)?) {
+    func CL_animateWithDuration(duration: NSTimeInterval?, from: Int, to:Int, completion: ((Bool) ->Void)?) {
+        
+        self.duration = duration!
         
         self.startValue = from
         self.endValue = to
@@ -53,21 +35,20 @@ class CountyLabel: UILabel {
         self.lastUpdateColor = self.textColor
         
         // add text color to start
-        colorGradients.insert(self.textColor, atIndex: 0)
-        
-        self.fractionUpdate = 1.0 / Double(colorGradients.count)
-        
         self.compleltionFunc = completion
+        
+        // grab start time
+        self.startTime = CACurrentMediaTime()
         
         if(duration == 0){
             // No animation
             self.text = "\(endValue)"
         }
         
-        // remove any old timer
-        if(self.timer != nil){
-            self.timer.invalidate()
-            self.timer = nil
+        // remove old Display Link
+        if(displayLink != nil){
+            displayLink.invalidate()
+            displayLink = nil
         }
         
         self.totalTime = duration
@@ -78,10 +59,12 @@ class CountyLabel: UILabel {
         self.timer = NSTimer(timeInterval: (1/30.0), target: self, selector: Selector("tick:"), userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(self.timer, forMode: NSRunLoopCommonModes)
         NSRunLoop.mainRunLoop().addTimer(self.timer, forMode: UITrackingRunLoopMode)
+        
+        // create display link
+        self.displayLink = CADisplayLink(target: self, selector: Selector("tick:"))
+        self.displayLink.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
     }
     
-    
-    private
     
     var startValue:Int = 0
     var endValue:Int = 50
@@ -94,32 +77,26 @@ class CountyLabel: UILabel {
     var percent:Double!
     var fractionUpdate:Double!
     
+    var startTime:CFTimeInterval!
+    
+    
     var endTimeStamp:NSTimeInterval!
     
     var timer:NSTimer!
     
+    var displayLink:CADisplayLink!
+    
     var compleltionFunc: ((Bool) -> Void)?
     
-    func tick(timer:NSTimer) ->Void{
+    func tick(link:CADisplayLink) ->Void{
         print("Entered \n")
         
-        // Grab now
-        var now = NSDate.timeIntervalSinceReferenceDate()
-        self.progress += (now - self.lastUpdateTime)
+        var dt = (link.timestamp - self.startTime) / self.duration
         
-        self.percent = (self.progress / self.totalTime)
-        
-        self.lastUpdateTime = now
-        
-        
-        if(self.progress >= self.totalTime){
-            self.timer.invalidate()
-            self.timer = nil
-            self.progress = self.totalTime
-            
-            // call completion
-            self.compleltionFunc?(true)
-            
+        if(dt >= 1.0){
+            self.text =  "\(self.endValue)"
+            link.removeFromRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
+            return
         }
         
         
@@ -140,11 +117,6 @@ class CountyLabel: UILabel {
     
     var currentValue:Double {
         
-        // For some fuzziness maybe??
-        if(self.percent >= 1.1){
-            return Double(self.endValue)
-        }
-        
         var updateVal = update(self.percent)
         
         return Double(self.startValue) + (updateVal * Double(self.endValue - self.startValue))
@@ -155,11 +127,13 @@ class CountyLabel: UILabel {
     // Fixed error update from fixed values
     var currentColor:UIColor {
         
-        println("fraction: \(self.percent)")
-        
         lastUpdateColor = ColorInterpolate.interpolate(from:UIColor.blackColor(), to:UIColor.redColor(),fraction:CGFloat(self.percent))
         
         return lastUpdateColor
+    }
+    
+    func update(t:Double) -> Double{
+        return t
     }
 
 }
