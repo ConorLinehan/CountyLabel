@@ -31,10 +31,16 @@ class ViewController: UIViewController {
         
     }
     
+    
+    
     func animate(){
-        countyLabel.CL_animateWithDuration(0.5, from: 0, to: 10, completion: { _ in
+        
+        countyLabel.text = "10"
+        secondLabel.text = "Apple"
+        
+        countyLabel.CL_animateWithDuration(0.5, to: 20, completion: { _ in
             
-            self.secondLabel.CL_animateWithDuration(1, from: 0, to: 1000, completion: nil)
+            self.secondLabel.CL_animateWithDuration(1,to: 50, completion: nil)
             
         })
     }
